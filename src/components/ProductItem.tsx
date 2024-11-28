@@ -22,22 +22,24 @@ export const ProductItem: React.FC<ProductItemProps> = ({
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleSelect = () => {
-    if (!isControlled && onSelect) {
-      setQuantity(1); // Automatically set quantity to 1 when selected
-      onSelect(product.id);
-      console.log("Product selected:", product.name, product.quantity);
+    if(!onSelect) {
+      return;
     }
+    if (!isControlled) {
+      setQuantity(1); // Automatically set quantity to 1 when selected 
+    }
+    onSelect(product.id);
   };
 
   const handleQuantityChange = (change: number) => {
-    const newQuantity = quantity + change;
+    const newQuantity = isControlled ? product.quantity + change : quantity + change;
     if (newQuantity >= 0) {
       if (!isControlled) setQuantity(newQuantity);
       if (onQuantityChange) onQuantityChange(product.id, newQuantity);
     }
   };
 
-  const isSelected = quantity > 0; // Determine if the product is selected
+  const isSelected = isControlled ? product.quantity > 0 : quantity > 0;
 
   return (
     <View style={styles.container}>
@@ -49,7 +51,9 @@ export const ProductItem: React.FC<ProductItemProps> = ({
         ) : (
           <View style={styles.quantityContainer}>
             <Button title="-" onPress={() => handleQuantityChange(-1)} />
-            <Text style={styles.quantity}>{quantity}</Text>
+            <Text style={styles.quantity}>
+              {isControlled ? product.quantity : quantity}
+            </Text>
             <Button title="+" onPress={() => handleQuantityChange(1)} />
           </View>
         )}
