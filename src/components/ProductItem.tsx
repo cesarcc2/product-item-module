@@ -9,11 +9,8 @@ type ProductItemProps = {
 };
 
 const ProductItem: React.FC<ProductItemProps> = ({ product, onSelectedChange, onQuantityChange }) => {
-  console.log('React instance in ProductItem:', React.version);
-  console.log('React instance equality check ProductItem:', React === require('react'));
   const [selected, setSelected] = useState(false);
   const [quantity, setQuantity] = useState(0);
-  console.log('useState called successfully');
 
   const toggleSelected = () => {
     setSelected(!selected);
