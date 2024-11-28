@@ -13,7 +13,7 @@ export interface ProductItemProps {
   isControlled?: boolean; // If true, parent controls state
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({
+export const ProductItem: React.FC<ProductItemProps> = ({
   product,
   onSelect,
   onQuantityChange,
@@ -51,5 +51,3 @@ const styles = StyleSheet.create({
   container: { padding: 10, borderBottomWidth: 1 },
   actions: { flexDirection: 'row', alignItems: 'center' },
 });
-
-export default ProductItem;
