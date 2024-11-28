@@ -25,6 +25,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
     if (!isControlled && onSelect) {
       setQuantity(1); // Automatically set quantity to 1 when selected
       onSelect(product.id);
+      console.log("Product selected:", product.name, product.quantity);
     }
   };
 
