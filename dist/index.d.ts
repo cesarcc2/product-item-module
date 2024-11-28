@@ -13,4 +13,4 @@ interface ProductItemProps {
 }
 declare const ProductItem: React.FC<ProductItemProps>;
 
-export { ProductItem };
+export { ProductItem, type ProductItemProps };
