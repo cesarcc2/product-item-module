@@ -1,11 +1,16 @@
 import React from 'react';
-import { Product } from 'shared-utils';
 
-type ProductItemProps = {
-    product: Product;
-    onSelectedChange?: (selected: boolean) => void;
-    onQuantityChange?: (quantity: number) => void;
-};
+interface ProductItemProps {
+    product: {
+        id: string;
+        name: string;
+        price: number;
+        quantity: number;
+    };
+    onSelect?: (id: string) => void;
+    onQuantityChange?: (id: string, quantity: number) => void;
+    isControlled?: boolean;
+}
 declare const ProductItem: React.FC<ProductItemProps>;
 
 export { ProductItem };
