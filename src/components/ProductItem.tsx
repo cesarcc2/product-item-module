@@ -22,7 +22,10 @@ export const ProductItem: React.FC<ProductItemProps> = ({
   const [quantity, setQuantity] = useState(product.quantity);
 
   const handleSelect = () => {
-    if (!isControlled && onSelect) onSelect(product.id);
+    if (!isControlled && onSelect) {
+      setQuantity(1); // Automatically set quantity to 1 when selected
+      onSelect(product.id);
+    }
   };
 
   const handleQuantityChange = (change: number) => {
@@ -33,15 +36,22 @@ export const ProductItem: React.FC<ProductItemProps> = ({
     }
   };
 
+  const isSelected = quantity > 0; // Determine if the product is selected
+
   return (
     <View style={styles.container}>
-      <Text>{product.name}</Text>
+      <Text style={styles.name}>{product.name}</Text>
       <Text>{`Price: $${product.price}`}</Text>
       <View style={styles.actions}>
-        <Button title="Select" onPress={handleSelect} />
-        <Button title="-" onPress={() => handleQuantityChange(-1)} />
-        <Text>{quantity}</Text>
-        <Button title="+" onPress={() => handleQuantityChange(1)} />
+        {!isSelected ? (
+          <Button title="Select" onPress={handleSelect} />
+        ) : (
+          <View style={styles.quantityContainer}>
+            <Button title="-" onPress={() => handleQuantityChange(-1)} />
+            <Text style={styles.quantity}>{quantity}</Text>
+            <Button title="+" onPress={() => handleQuantityChange(1)} />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -50,4 +60,7 @@ export const ProductItem: React.FC<ProductItemProps> = ({
 const styles = StyleSheet.create({
   container: { padding: 10, borderBottomWidth: 1 },
   actions: { flexDirection: 'row', alignItems: 'center' },
+  name: { fontWeight: 'bold', marginBottom: 5 },
+  quantityContainer: { flexDirection: 'row', alignItems: 'center' },
+  quantity: { marginHorizontal: 10, fontSize: 16 },
 });
