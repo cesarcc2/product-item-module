@@ -1,13 +1,10 @@
 import React from 'react';
+import { Product } from 'shared-utils';
 
 interface ProductItemProps {
-    product: {
-        id: string;
-        name: string;
-        price: number;
-        quantity: number;
-    };
-    onSelect?: (id: string) => void;
+    product: Product;
+    quantity?: number;
+    onSelect: (id: string) => void;
     onQuantityChange?: (id: string, quantity: number) => void;
     isControlled?: boolean;
 }
