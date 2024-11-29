@@ -20,7 +20,9 @@ export const ProductItem: React.FC<ProductItemProps> = ({
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{product.name}</Text>
-      <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+      {product.price && (
+        <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+      )}
       {quantity !== undefined ? (
         <View style={styles.cartActions}>
           <Button title="-" onPress={() => onQuantityChange?.(product.id, Math.max(quantity - 1, 0))} />
