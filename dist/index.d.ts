@@ -6,7 +6,7 @@ interface ProductItemProps {
     quantity?: number;
     onSelect: (id: string) => void;
     onQuantityChange?: (id: string, quantity: number) => void;
-    isControlled?: boolean;
+    standalone?: boolean;
 }
 declare const ProductItem: React.FC<ProductItemProps>;
 
