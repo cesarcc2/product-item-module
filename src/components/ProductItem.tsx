@@ -1,5 +1,6 @@
+import { IonItem, IonLabel, IonButtons, IonButton, IonText } from '@ionic/react';
+import { StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
 import { Product } from 'shared-utils';
 
 export interface ProductItemProps {
@@ -45,26 +46,34 @@ export const ProductItem: React.FC<ProductItemProps> = ({
   const displayQuantity = standalone ? localQuantity : quantity;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.name}>{product.name}</Text>
-      <Text style={styles.price}>${product.price.toFixed(2)}</Text>
+    <IonItem>
+      {/* Product Details */}
+      <IonLabel>
+        <h2>{product.name}</h2>
+        <p>${product.price.toFixed(2)}</p>
+      </IonLabel>
+
+      {/* Quantity Controls */}
       {displayQuantity !== 0 && displayQuantity !== undefined ? (
-        <View style={styles.cartActions}>
-          <Button title="-" onPress={() => handleQuantityChange(Math.max(displayQuantity! - 1, 0))} />
-          <Text style={styles.quantity}>{displayQuantity}</Text>
-          <Button title="+" onPress={() => handleQuantityChange(displayQuantity! + 1)} />
-        </View>
+        <IonButtons slot="end">
+          <IonButton style={styles.roundBtn} fill="solid" color={'primary'} shape="round" onClick={() => handleQuantityChange(Math.max(displayQuantity! - 1, 0))}>
+            -
+          </IonButton>
+          <IonText style={{ margin: '0 8px' }}>{displayQuantity}</IonText>
+          <IonButton style={styles.roundBtn} fill="solid" color={'primary'} shape="round" onClick={() => handleQuantityChange(displayQuantity! + 1)}>+</IonButton>
+        </IonButtons>
       ) : (
-        <Button title="Add to Cart" onPress={() => handleAddToCart()} />
+        // Add to Cart Button
+        <IonButton style={styles.mainBtn} color={'primary'} slot="end" onClick={() => handleAddToCart()}>
+          Add to Cart
+        </IonButton>
       )}
-    </View>
+    </IonItem>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 10, borderBottomWidth: 1, borderColor: '#ddd' },
-  name: { fontSize: 16, fontWeight: 'bold' },
-  price: { fontSize: 14, color: '#888' },
-  cartActions: { flexDirection: 'row', alignItems: 'center' },
-  quantity: { marginHorizontal: 10, fontSize: 16 },
+  item: { padding: 2 },
+  mainBtn: { fontSize: 14},
+  roundBtn: { fontSize: 20, fontWeight: 'bold', width: 30},
 });

@@ -14,7 +14,7 @@ const config: StorybookConfig = {
     options: {},
   },
   babel: async (options) => {
-    options.presets.push('babel-preset-expo');
+    options.presets.push('@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript');
     return options;
   },
 };
