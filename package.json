@@ -15,9 +15,10 @@
   "license": "ISC",
   "peerDependencies": {
     "@ionic/react": "^8.4.1",
-    "react": "18.3.1",
+    "react": "^18.0.0",
     "react-native": "0.76.3",
-    "shared-utils": "github:cesarcc2/shared-utils.git"
+    "shared-utils": "github:cesarcc2/shared-utils.git",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
