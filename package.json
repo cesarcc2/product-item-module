@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs",
-    "test": "storybook dev -p 6006",
+    "storybook": "storybook dev",
     "build-storybook": "storybook build"
   },
   "keywords": [],
