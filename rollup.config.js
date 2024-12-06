@@ -4,10 +4,11 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import terser from "@rollup/plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-
 import postcss from "rollup-plugin-postcss";
+import { readFileSync } from "fs";
 
-const packageJson = require("./package.json");
+// Read package.json manually
+const packageJson = JSON.parse(readFileSync("./package.json", "utf-8"));
 
 export default [
   {
@@ -37,7 +38,7 @@ export default [
   {
     input: "src/index.ts",
     output: [{ file: packageJson.types }],
-    plugins: [dts.default()],
+    plugins: [dts()],
     external: [/\.css$/],
   },
 ];
