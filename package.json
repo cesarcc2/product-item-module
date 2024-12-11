@@ -52,7 +52,9 @@
     "storybook": "^8.4.6",
     "style-loader": "^4.0.0",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "babel-loader": "^9.2.1",
+    "ts-loader": "^9.5.1"
   },
   "dependencies": {
     "@ionic/core": "^8.4.1",
